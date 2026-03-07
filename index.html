@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Dzień Kobiet PRO 🌸</title>
+<style>
+/* Tło gradientowe zmieniające kolory */
+body{
+margin:0;
+overflow:hidden;
+height:100vh;
+font-family:'Arial', sans-serif;
+text-align:center;
+color:white;
+background:linear-gradient(120deg,#ff3cac,#784ba0,#2b86c5);
+animation:bgChange 12s infinite alternate;
+perspective:1000px;
+}
+@keyframes bgChange{
+0%{background:linear-gradient(120deg,#ff3cac,#784ba0,#2b86c5);}
+25%{background:linear-gradient(120deg,#ff85c2,#ffccf9,#a8e6cf);}
+50%{background:linear-gradient(120deg,#ffc2e0,#ffd6ec,#b3e5fc);}
+75%{background:linear-gradient(120deg,#ff9ad5,#d291bc,#6a0572);}
+100%{background:linear-gradient(120deg,#ff3cac,#784ba0,#2b86c5);}
+}
+
+/* Nagłówek */
+h1{
+font-size:75px;
+margin-top:80px;
+text-shadow:2px 2px 15px rgba(0,0,0,0.6);
+animation:fade 2s;
+}
+
+/* Karta z życzeniami */
+.card{
+background:rgba(255,255,255,0.15);
+padding:50px;
+border-radius:30px;
+width:65%;
+margin:auto;
+backdrop-filter:blur(14px);
+box-shadow:0 0 50px rgba(0,0,0,0.5);
+animation:fade 3s;
+transition:0.5s;
+}
+.card:hover{
+transform:scale(1.03) rotateX(3deg) rotateY(3deg);
+box-shadow:0 0 70px rgba(255,20,147,0.6);
+}
+
+/* Przycisk */
+button{
+padding:18px 45px;
+font-size:22px;
+border:none;
+border-radius:20px;
+background:white;
+color:#ff1493;
+cursor:pointer;
+margin-top:25px;
+transition:0.4s;
+box-shadow:0 0 25px rgba(0,0,0,0.3);
+}
+button:hover{
+transform:scale(1.15);
+background:#ffd6ec;
+box-shadow:0 0 40px rgba(255,20,147,0.7);
+}
+
+/* Animacja fade */
+@keyframes fade{
+from{opacity:0; transform:translateY(60px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+/* Kwiaty 3D */
+.flower{
+position:absolute;
+font-size:30px;
+transform-style:preserve-3d;
+animation:fall linear infinite;
+}
+@keyframes fall{
+0%{transform:translateY(-100px) rotateX(0deg) rotateY(0deg);}
+100%{transform:translateY(110vh) rotateX(720deg) rotateY(720deg);}
+}
+
+/* Gwiazdki przy myszce */
+.star{
+position:absolute;
+color:#fff;
+pointer-events:none;
+animation:twinkle 1s linear infinite;
+}
+@keyframes twinkle{
+0%,100%{opacity:0;}
+50%{opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌸 Dzień Kobiet PRO 🌸</h1>
+
+<div class="card">
+<h2>Najlepsze życzenia!</h2>
+<p>Dużo szczęścia, uśmiechu i spełnienia wszystkich marzeń 💐</p>
+<p>Strona przygotowana przez <b>Piotrka i Marcina</b></p>
+<button onclick="playMusic()">Kliknij po niespodziankę</button>
+</div>
+
+<!-- Bukiet w rogu -->
+<div id="bouquet" style="position:fixed;bottom:20px;right:20px;font-size:90px;animation:bounce 2s infinite alternate;">💐</div>
+<style>@keyframes bounce{0%{transform:translateY(0);}100%{transform:translateY(-15px);}}</style>
+
+<script>
+// Kwiaty spadające 3D
+function createFlower(){
+let flower=document.createElement("div");
+flower.classList.add("flower");
+let emojis=["🌸","🌺","🌷","💐"];
+flower.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+flower.style.left=Math.random()*100+"vw";
+flower.style.fontSize=(20+Math.random()*25)+"px";
+flower.style.animationDuration=(Math.random()*4+3)+"s";
+flower.style.opacity=Math.random()*0.9+0.1;
+document.body.appendChild(flower);
+setTimeout(()=>flower.remove(),7000);
+}
+setInterval(createFlower,180);
+
+// Gwiazdki przy myszce
+document.addEventListener("mousemove",e=>{
+let star=document.createElement("div");
+star.classList.add("star");
+star.style.left=e.pageX+"px";
+star.style.top=e.pageY+"px";
+star.style.fontSize=(5+Math.random()*12)+"px";
+document.body.appendChild(star);
+setTimeout(()=>star.remove(),600);
+});
+
+// Muzyka w tle
+let audio=new Audio('https://www.bensound.com/bensound-music/bensound-sunny.mp3');
+audio.loop=true;
+audio.volume=0.2;
+function playMusic(){
+audio.play();
+alert("Muzyka włączona! 🌸🎵");
+}
+
+// Animacja bukietu już w CSS (bounce)
+</script>
+
+</body>
+</html>
